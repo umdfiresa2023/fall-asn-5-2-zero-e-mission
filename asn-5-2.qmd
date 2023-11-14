@@ -1,0 +1,132 @@
+---
+title: "ASN5.2. Modeling for Inference"
+author: "2023 FIRE298 Sustainability Analytics"
+format: html
+editor: visual
+---
+
+In this assignment, you will use the difference-in-difference model framework to estimate the impact of the treatment variable.
+
+### **Part 1. Explaining the Data**
+
+Instructions: Run the script below to download and declare the required packages.
+
+```{r}
+#| message: false
+#install.packages("tidyverse")
+library("tidyverse")
+```
+
+Instructions: Upload your team's final dataframe into Posit Cloud. Use the read.csv function to upload the dataframe into the Posit Cloud Environment.
+
+```{r}
+
+```
+
+**Question 1: Which variable indicates the treatment *group*? If your dataset does not have one yet, please create it using the mutate and ifelse function (2 points)**
+
+Answer:
+
+**Question 2: Which variable indicates the treatment *period?* If your dataset does not have one yet, please create it using the mutate and ifelse function (2 points)**
+
+Answer:
+
+**Question 3: Run a DiD regression with the treatment group** $d_i$**, treatment period** $t$**, and its interaction** $d_{it} \times t$ **to estimate their impact on the outcome variable. This regression can be represent by the equation** $Y_{it}=\beta_0+\beta_1 d_i+\beta_2 t + \gamma (d_{it}\times t) + \epsilon_{it}$
+
+**Afterward, print the regression results by using the function summary(*ModelName*). An example of this can be found in the lecture slides 2023 FIRE298 Week 12 Part 2 Slide 5.**
+
+```{r}
+
+```
+
+**Based on the regression, what is the value of** $\beta_0$ **? (1 point)**
+
+Answer:
+
+**Based on the regression, what is the value of** $\beta_1$ **? (1 point)**
+
+Answer:
+
+**Based on the regression, what is the impact of the treatment on the treatment group, relative to the control group, represented by** $\gamma$ **? (1 point)**
+
+Answer:
+
+**Based on the regression, is the treatment effect statistically different from 0? (1 point)**
+
+Answer:
+
+### **Part 2. DiD with Fixed Effects**
+
+**Question 4: Run a DiD model with the treatment group** $d_i$**, treatment period** $t$**, its interaction** $d_{it} \times t$, **and all other** **numerical variables in your data to estimate the treatment effect. What does the regression table look like? (1 point)**
+
+```{r}
+
+```
+
+**Question 5: Based on the regression in Question 4, what is the** **treatment effect? Is the treatment effect statistically different from 0? (2 points)**
+
+```{r}
+
+```
+
+**Question 6: Run a DiD model the treatment group** $d_i$**, treatment period** $t$**, its interaction** $d_{it} \times t$, **and all other numerical, binary, and categorical variables. What does the regression table look like? (2 points)**
+
+Instructions: A binary variable takes the form of 0 or 1. A categorical variable is a character with only a few unique values.
+
+The efficient way to include categorical variables in a regression is to use the felm( ) function from the lfe package instead of the lm( ) function. The function has the format:
+
+``` r
+ModelName<- felm(OutcomeVariable ~ NumericalVariables + BinaryVariables | Categorical Variables, DataFrame)
+```
+
+The summary(ModelName) function is then used to print out the regression model.
+
+```{r}
+#| message: false
+#install.packages("lfe")
+library("lfe")
+```
+
+Write your model below and run it.
+
+```{r}
+
+```
+
+**Question 7: Based on the regression in Question 6, what is the** **treatment effect? Is the treatment effect statistically different from 0? (2 points)**
+
+**Question 8: Create more binary or categorical variables by multiplying binary variables or combining categorical variables together as you see fit. Explain what real-world factor each new variable represents. (2 points)**
+
+Instructions: You created new variables by multiplying binary variables and combining categorical variables in asn-6-4-key.qmd Part 2. You explained what each variable represents in asn-6-4-key.qmd Part 1 Questions 4, 5, and 6.
+
+```{r}
+
+```
+
+Answer:
+
+**Question 9: Run a DiD model with the treatment group** $d_i$**, treatment period** $t$**, its interaction** $d_{it} \times t$, **and all other numerical, binary, and categorical variables that you have created in Question 8. What does the regression table look like? (2 points)**
+
+```{r}
+
+```
+
+**Question 10: Based on the regression in Question 9, what is the** **treatment effect? Is the treatment effect statistically different from 0? (2 points)**
+
+Answer:
+
+**Question 11: Based on your intuition**, **which DiD regression was the best estimator of the treatment effect?** **Please explain why. (2 points)**
+
+Answer:
+
+### **Part 3 Thinking about causal inference**
+
+**Question 12: A credible DiD analysis assumes that no other factor impacts the changes in the treatment group that have not been controlled. Based on your opinion, what factors can change the treated outcome that has not been accounted for? (10 points)**
+
+Answer:
+
+**Question 13: Had you had more time, what additional variables (that you know exist) could you add to your data to take into account external factors that influence the treatment outcome? Please provide a link to each of the data sources. (4 points)**
+
+Answer:
+
+You have reached the end of this assignment. Commit and push your updates back into the GitHub repository. You can find the step-by-step tutorial [here.](https://drive.google.com/drive/u/0/folders/1eSMfNoV_ilp4OnID2Ql3YT2qXkhCS7Vm)
