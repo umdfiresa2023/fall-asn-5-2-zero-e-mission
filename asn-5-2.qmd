@@ -61,7 +61,7 @@ Answer: 0.0578 can be considered statistically different from 0
 
 ```{r}
 # Other numerical variables do not have an effect on treatment effect, so the model remains the same
-summary(did_numerical<- lm(Daily.Max.1.hour.NO2.Concentration ~ post + treat + post:treat, data = df1))
+summary(did_numerics<- lm(Daily.Max.1.hour.NO2.Concentration ~ post + treat + post:treat, data = df1))
 
 ```
 
