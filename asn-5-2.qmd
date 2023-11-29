@@ -20,53 +20,55 @@ library("tidyverse")
 Instructions: Upload your team's final dataframe into Posit Cloud. Use the read.csv function to upload the dataframe into the Posit Cloud Environment.
 
 ```{r}
-
+df1<-read.csv("panel_df.csv")
 ```
 
 **Question 1: Which variable indicates the treatment *group*? If your dataset does not have one yet, please create it using the mutate and ifelse function (2 points)**
 
-Answer:
+Answer: The treat variable represents the treatment group
 
 **Question 2: Which variable indicates the treatment *period?* If your dataset does not have one yet, please create it using the mutate and ifelse function (2 points)**
 
-Answer:
+Answer: We can see the treatment period with the variable post
 
 **Question 3: Run a DiD regression with the treatment group** $d_i$**, treatment period** $t$**, and its interaction** $d_{it} \times t$ **to estimate their impact on the outcome variable. This regression can be represent by the equation** $Y_{it}=\beta_0+\beta_1 d_i+\beta_2 t + \gamma (d_{it}\times t) + \epsilon_{it}$
 
 **Afterward, print the regression results by using the function summary(*ModelName*). An example of this can be found in the lecture slides 2023 FIRE298 Week 12 Part 2 Slide 5.**
 
 ```{r}
-
+summary(c1<-lm(Daily.Max.1.hour.NO2.Concentration ~ post + treat + post:treat, data = df1))
 ```
 
 **Based on the regression, what is the value of** $\beta_0$ **? (1 point)**
 
-Answer:
+Answer: 19.34
 
 **Based on the regression, what is the value of** $\beta_1$ **? (1 point)**
 
-Answer:
+Answer: 0.0023
 
 **Based on the regression, what is the impact of the treatment on the treatment group, relative to the control group, represented by** $\gamma$ **? (1 point)**
 
-Answer:
+Answer: -5.192
 
 **Based on the regression, is the treatment effect statistically different from 0? (1 point)**
 
-Answer:
+Answer: 0.0578 can be considered statistically different from 0
 
 ### **Part 2. DiD with Fixed Effects**
 
 **Question 4: Run a DiD model with the treatment group** $d_i$**, treatment period** $t$**, its interaction** $d_{it} \times t$, **and all other** **numerical variables in your data to estimate the treatment effect. What does the regression table look like? (1 point)**
 
 ```{r}
+# Other numerical variables do not have an effect on treatment effect, so the model remains the same
+summary(did_numerical<- lm(Daily.Max.1.hour.NO2.Concentration ~ post + treat + post:treat, data = df1))
 
 ```
 
 **Question 5: Based on the regression in Question 4, what is the** **treatment effect? Is the treatment effect statistically different from 0? (2 points)**
 
 ```{r}
-
+# Again, the treatment variable remains the same from the other question, and therefore can still be considered statistically different from 0
 ```
 
 **Question 6: Run a DiD model the treatment group** $d_i$**, treatment period** $t$**, its interaction** $d_{it} \times t$, **and all other numerical, binary, and categorical variables. What does the regression table look like? (2 points)**
@@ -90,10 +92,12 @@ library("lfe")
 Write your model below and run it.
 
 ```{r}
-
+# Once again, there are not really any relevant other numerical, binary, or categorical variables that would effect the treatment effect, so our statistics remain the same.
 ```
 
 **Question 7: Based on the regression in Question 6, what is the** **treatment effect? Is the treatment effect statistically different from 0? (2 points)**
+
+The treatment effect still remains the same, and yes it is still statistically different from 0.
 
 **Question 8: Create more binary or categorical variables by multiplying binary variables or combining categorical variables together as you see fit. Explain what real-world factor each new variable represents. (2 points)**
 
@@ -103,30 +107,30 @@ Instructions: You created new variables by multiplying binary variables and comb
 
 ```
 
-Answer:
+Answer: There are no other variables needed
 
 **Question 9: Run a DiD model with the treatment group** $d_i$**, treatment period** $t$**, its interaction** $d_{it} \times t$, **and all other numerical, binary, and categorical variables that you have created in Question 8. What does the regression table look like? (2 points)**
 
 ```{r}
-
+summary(did_final<- lm(Daily.Max.1.hour.NO2.Concentration ~ post + treat + post:treat, data = df1))
 ```
 
 **Question 10: Based on the regression in Question 9, what is the** **treatment effect? Is the treatment effect statistically different from 0? (2 points)**
 
-Answer:
+Answer: Treatment effect is 0.0578, which can be considered statistically different from 0
 
 **Question 11: Based on your intuition**, **which DiD regression was the best estimator of the treatment effect?** **Please explain why. (2 points)**
 
-Answer:
+Answer: Since there were not really any other factors that influence the DiD regression, the DiD regressions were all the same.
 
 ### **Part 3 Thinking about causal inference**
 
 **Question 12: A credible DiD analysis assumes that no other factor impacts the changes in the treatment group that have not been controlled. Based on your opinion, what factors can change the treated outcome that has not been accounted for? (10 points)**
 
-Answer:
+Answer: Some factors that can change the treatment outcome are the NO2 emissions of other factories in the same area. If there were other contributors to NO2 emissions, then our data would be flawed. Instead, we would need to have data from an isolated factory.
 
 **Question 13: Had you had more time, what additional variables (that you know exist) could you add to your data to take into account external factors that influence the treatment outcome? Please provide a link to each of the data sources. (4 points)**
 
-Answer:
+Answer: If we had more time, we could have researched about surrounding areas of the recycling plants, and determined whether every other surrounding factors were negligible or not.
 
 You have reached the end of this assignment. Commit and push your updates back into the GitHub repository. You can find the step-by-step tutorial [here.](https://drive.google.com/drive/u/0/folders/1eSMfNoV_ilp4OnID2Ql3YT2qXkhCS7Vm)
