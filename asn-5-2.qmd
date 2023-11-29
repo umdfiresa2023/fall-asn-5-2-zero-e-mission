@@ -65,7 +65,7 @@ summary(did_numerics<- lm(Daily.Max.1.hour.NO2.Concentration ~ post + treat + po
 
 ```
 
-Feedback: You can consider year as a numerical variable and run the regression below: (1 point deduction)
+Feedback: You can consider year as a numerical variable and run the regression below: (3 points deduction)
 
 ```{r}
 summary(did_numerics<- lm(Daily.Max.1.hour.NO2.Concentration ~ 
@@ -103,7 +103,7 @@ Write your model below and run it.
 # Once again, there are not really any relevant other numerical, binary, or categorical variables that would effect the treatment effect, so our statistics remain the same.
 ```
 
-Feedback: You can consider Site.ID and month a categorical variable and run the regression below: (1 point deduction)
+Feedback: You can consider Site.ID and month a categorical variable and run the regression below: (3 points deduction)
 
 ```{r}
 summary(did_numerics<- felm(Daily.Max.1.hour.NO2.Concentration ~ 
